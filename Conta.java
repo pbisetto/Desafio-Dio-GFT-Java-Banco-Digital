@@ -8,44 +8,72 @@ public abstract class Conta implements IConta {
     protected double saldo;
     protected Cliente cliente;
 
+//    public Conta(ContaPoupancaCliente cliente) {
+//
+//    }
+
+
+
     public Conta(Cliente cliente) {
-        this.agencia = Conta.AGENCIA_PADRAO;
+        this.agencia = AGENCIA_PADRAO;
         this.numero = SEQUENCIAL++;
         this.cliente = cliente;
     }
 
-    @Override
-    public void sacar(double valor) {
-        saldo -= valor;
-    }
+        @Override
+        public void sacar(double valor) {
+        saldo = saldo - valor;
+        }
 
     @Override
     public void depositar(double valor) {
-        saldo += valor;
+        saldo= saldo + valor;
+
     }
 
     @Override
-    public void transferir(double valor, IConta contaDestino) {
+    public void transferir(double valor, Conta contaDestino) {
         this.sacar(valor);
         contaDestino.depositar(valor);
     }
 
-    public int getAgencia() {
+    @Override
+    public void imprimirExtrato() {
+
+
+    }
+
+    // métodos
+    public void sacar(){
+
+    }
+
+    public void depositar(){
+
+    }
+
+    public void transferir(){
+
+    }
+
+    public int getagencia(){
         return agencia;
     }
 
-    public int getNumero() {
+    public int getnumero(){
         return numero;
     }
-
-    public double getSaldo() {
+    public double getsaldo(){
         return saldo;
     }
 
     protected void imprimirInfosComuns() {
-        System.out.println(String.format("Titular: %s", this.cliente.getNome()));
-        System.out.println(String.format("Agencia: %d", this.agencia));
-        System.out.println(String.format("Numero: %d", this.numero));
-        System.out.println(String.format("Saldo: %.2f", this.saldo));
+        System.out.println(String.format("Titular:%s", this.cliente.getNome()));
+        System.out.println(String.format("Agencia:%d", this.agencia));
+        System.out.println(String.format("Numero:%d", this.numero));
+        System.out.println(String.format("Saldo:%.2f", this.saldo));
+        System.out.println(String.format("Endereco: %s - %d, %s, %d", this.cliente.getEndereco().getNomeRua(), this.cliente.getEndereco().getNumeroCasa(),
+                this.cliente.getEndereco().getBairro(), this.cliente.getEndereco().getCEP()));
+        System.out.println(String.format("Sua chave PIX é:%d", this.cliente.getChavePix()));
     }
 }
