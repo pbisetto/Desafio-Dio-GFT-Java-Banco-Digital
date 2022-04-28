@@ -17,7 +17,7 @@ public class Main {
         logradouro2.setNumeroCasa(267);
 
         Cliente pessoa2 = new Cliente();
-        pessoa2.setNome("mariano");
+        pessoa2.setNome("Bruna");
         pessoa2.setEndereco(logradouro2);
 
        // Transações
